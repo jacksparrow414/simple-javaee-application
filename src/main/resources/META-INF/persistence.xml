@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="simple" transaction-type="JTA">
+        <jta-data-source>jdbc/H2DataSource</jta-data-source>
+        <properties>
+<!--            数据库信息配置-->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+<!--            其他行为配置-->
+            <!--        https://javaee.github.io/tutorial/persistence-intro006.html-->
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <property name="javax.persistence.schema-generation.create-source" value="script"/>
+            <property name="javax.persistence.schema-generation.create-script-source" value="META-INF/sql/create.sql" />
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/data.sql" />
+<!--            因为这里是H2内存数据库，所以这个drop可以注释掉  如果是其他数据库如MySQL，则上述action的value需要改为drop-and-create，并放开此注释-->
+<!--            <property name="javax.persistence.schema-generation.drop-source" value="script" />-->
+<!--            <property name="javax.persistence.schema-generation.drop-script-source" value="META-INF/sql/drop.sql" />-->
+
+<!--            打印SQL-->
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
