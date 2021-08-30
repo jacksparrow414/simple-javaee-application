@@ -3,6 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
+<!--   关于transaction-type解释以及JPA整体概览 https://dzone.com/articles/resource-local-vs-jta-transaction-types-and-payara-->
     <persistence-unit name="simple" transaction-type="JTA">
         <jta-data-source>jdbc/H2DataSource</jta-data-source>
         <properties>
